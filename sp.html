@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>פלייליסט Spotify - הענף</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .spotify-card {
+            text-align: center;
+            align-items: center;
+            padding: 28px 20px;
+            gap: 20px;
+            background: rgba(18, 18, 18, 0.9);
+            border: 1px solid rgba(29, 185, 84, 0.3);
+            box-shadow: 0 0 35px rgba(29, 185, 84, 0.25);
+        }
+
+        .spotify-img-box {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid rgba(29, 185, 84, 0.4);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .spotify-img-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .spotify-title {
+            color: #1DB954;
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .spotify-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .spotify-btn {
+            padding: 16px 36px;
+            background: #1DB954;
+            border: none;
+            border-radius: 50px;
+            color: #000;
+            font-family: inherit;
+            font-size: 1.15rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 25px rgba(29, 185, 84, 0.5);
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+
+        .spotify-btn:hover {
+            transform: scale(1.05);
+            background: #1ed760;
+            box-shadow: 0 12px 35px rgba(29, 185, 84, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="background-globes">
+        <div class="globe globe-1" style="background: #1DB954;"></div>
+        <div class="globe globe-2"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1 class="spotify-title"><i class="fa-brands fa-spotify"></i> פלייליסט Spotify</h1>
+        </header>
+
+        <!-- Main Spotify Card -->
+        <main class="quiz-card spotify-card">
+            <div class="spotify-img-box">
+                <img src="sp.jpeg" alt="Spotify Playlist Code">
+            </div>
+
+            <div class="song-info">
+                <h2>פלייליסט הענף</h2>
+                <p class="spotify-subtitle">סרוק את הקוד או לחץ על הכפתור למעבר לפלייליסט</p>
+            </div>
+
+            <a href="https://open.spotify.com" id="spotifyLink" target="_blank" class="spotify-btn">
+                <i class="fa-brands fa-spotify"></i> פתח ב-Spotify
+            </a>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // הקישור לפלייליסט ב-Spotify (תוכל להחליף לקישור הישיר במידת הצורך)
+            const SPOTIFY_PLAYLIST_URL = "https://open.spotify.com";
+            
+            const spotifyLink = document.getElementById('spotifyLink');
+            if (spotifyLink) {
+                spotifyLink.href = SPOTIFY_PLAYLIST_URL;
+            }
+
+            // הפעלה אוטומטית / פתיחה בעת טעינת העמוד במידת האפשר
+            setTimeout(() => {
+                window.location.href = SPOTIFY_PLAYLIST_URL;
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
