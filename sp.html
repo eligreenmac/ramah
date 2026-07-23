@@ -109,18 +109,12 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // הקישור לפלייליסט ב-Spotify (תוכל להחליף לקישור הישיר במידת הצורך)
+            // כפתור מעבר ידני (במידת הצורך)
             const SPOTIFY_PLAYLIST_URL = "https://open.spotify.com";
-            
             const spotifyLink = document.getElementById('spotifyLink');
             if (spotifyLink) {
                 spotifyLink.href = SPOTIFY_PLAYLIST_URL;
             }
-
-            // הפעלה אוטומטית / פתיחה בעת טעינת העמוד במידת האפשר
-            setTimeout(() => {
-                window.location.href = SPOTIFY_PLAYLIST_URL;
-            }, 1000);
         });
     </script>
 </body>
