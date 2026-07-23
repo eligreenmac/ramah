@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // DOM Elements
     const quizImage = document.getElementById('quizImage');
+    const mysteryOverlay = document.getElementById('mysteryOverlay');
     const optionsContainer = document.getElementById('optionsContainer');
     const currentStepText = document.getElementById('currentStepText');
     const progressFill = document.getElementById('progressFill');
@@ -48,6 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadQuizStep(stepIndex) {
         isTransitioning = false;
         const data = activeQuizData[stepIndex];
+
+        // Reset mystery overlay & image reveal state
+        if (mysteryOverlay) mysteryOverlay.classList.remove('revealed');
+        quizImage.classList.remove('revealed');
 
         // Update progress bar & text
         currentStepText.textContent = `תמונה ${stepIndex + 1} מתוך ${activeQuizData.length}`;
@@ -91,36 +96,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const fullscreenReveal = document.getElementById('fullscreenReveal');
+    const fullscreenImg = document.getElementById('fullscreenImg');
+    const revealCountdown = document.getElementById('revealCountdown');
+    let revealTimerInterval = null;
+
     function handleOptionClick(selectedIndex, correctIndex, buttonEl) {
         if (isTransitioning) return;
 
         if (selectedIndex === correctIndex) {
-            // Correct Answer!
+            // Correct Answer! Reveal Image in Fullscreen & Confetti!
             isTransitioning = true;
             buttonEl.classList.add('btn-correct');
             buttonEl.querySelector('i').className = 'fa-solid fa-circle-check';
 
-            feedbackMsg.textContent = 'תשובה נכונה! מעביר לתמונה הבאה...';
+            // Reveal mystery image in card
+            if (mysteryOverlay) mysteryOverlay.classList.add('revealed');
+            quizImage.classList.add('revealed');
+
+            feedbackMsg.textContent = 'תשובה נכונה! התמונה נחשפה! 🥳';
             feedbackMsg.className = 'feedback-msg correct';
 
-            // Trigger mini confetti
+            // Open Fullscreen Reveal Modal
+            if (fullscreenReveal && fullscreenImg) {
+                fullscreenImg.src = activeQuizData[currentStep].image;
+                fullscreenReveal.classList.add('active');
+            }
+
+            // Trigger confetti burst
             if (typeof confetti === 'function') {
                 confetti({
-                    particleCount: 40,
-                    spread: 60,
-                    origin: { y: 0.8 }
+                    particleCount: 80,
+                    spread: 80,
+                    origin: { y: 0.6 }
                 });
             }
 
-            // Move to next step or finish
-            setTimeout(() => {
-                if (currentStep < activeQuizData.length - 1) {
-                    currentStep++;
-                    loadQuizStep(currentStep);
-                } else {
-                    showWinScreen();
+            // 2-second countdown timer
+            let timeLeft = 2;
+            if (revealCountdown) revealCountdown.textContent = timeLeft;
+
+            clearInterval(revealTimerInterval);
+            revealTimerInterval = setInterval(() => {
+                timeLeft--;
+                if (revealCountdown) revealCountdown.textContent = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(revealTimerInterval);
+                    if (fullscreenReveal) fullscreenReveal.classList.remove('active');
+                    setTimeout(() => {
+                        if (currentStep < activeQuizData.length - 1) {
+                            currentStep++;
+                            loadQuizStep(currentStep);
+                        } else {
+                            showWinScreen();
+                        }
+                    }, 300);
                 }
-            }, 900);
+            }, 1000);
 
         } else {
             // Wrong Answer!

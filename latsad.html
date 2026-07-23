@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>מדורי הענף - חידון זיהוי</title>
+    <title>מורשת הענף - חידון</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,36 +23,37 @@
     <div class="app-container">
         <!-- Header -->
         <header class="app-header">
-            <h1>מדורי הענף</h1>
+            <h1>שאלות מורשת הענף</h1>
             <div class="stats-bar">
                 <div class="progress-info">
-                    <span id="currentStepText">תמונה 1 מתוך 7</span>
+                    <span id="currentStepText">שאלה 1 מתוך 2</span>
                 </div>
                 <div class="progress-track">
-                    <div class="progress-fill" id="progressFill" style="width: 14.28%;"></div>
+                    <div class="progress-fill" id="progressFill" style="width: 50%;"></div>
                 </div>
             </div>
         </header>
 
-        <!-- Main Quiz Card -->
+        <!-- Quiz Card -->
         <main class="quiz-card" id="quizCard">
-            <!-- Image Area -->
-            <div class="image-box">
-                <img id="quizImage" src="" alt="תמונת המדור">
+            <!-- Image Area (Shown when question has image) -->
+            <div class="image-box" id="imageBox">
+                <img id="quizImage" src="לצד.jpeg" alt="תמונת המורשת">
                 <div class="mystery-overlay" id="mysteryOverlay">
                     <i class="fa-solid fa-lock"></i>
                     <span>ענה נכון כדי לחשוף את התמונה</span>
                 </div>
             </div>
 
+            <!-- Instructions / Question Text -->
+            <div class="instructions-text" id="questionText">מה שם ענף ה"א בהקמתו?</div>
+
             <!-- Feedback Alert -->
             <div class="feedback-msg" id="feedbackMsg"></div>
 
-            <div class="instructions-text">איזה מדור מופיע בתמונה הסודית?</div>
-
-            <!-- 7 Options Buttons -->
+            <!-- 4 Options Buttons -->
             <div class="options-container" id="optionsContainer">
-                <!-- Buttons will be dynamically populated -->
+                <!-- Dynamic options -->
             </div>
         </main>
 
@@ -69,15 +70,16 @@
         </div>
     </div>
 
-    <!-- Fullscreen Image Reveal Modal -->
+    <!-- Fullscreen Reveal Modal -->
     <div class="fullscreen-reveal" id="fullscreenReveal">
         <div class="reveal-content">
             <img id="fullscreenImg" src="" alt="תמונה נחשפת">
-            <div class="reveal-caption" id="revealCaption">תשובה נכונה! התמונה נחשפה! 🥳</div>
-            <div class="reveal-timer">מעביר בעוד <span id="revealCountdown">2</span> שניות...</div>
+            <div class="big-revealed-text hidden" id="fullscreenText"></div>
+            <div class="reveal-caption" id="revealCaption">תשובה נכונה! 🥳</div>
+            <div class="reveal-timer" id="revealTimer">מעביר בעוד <span id="revealCountdown">2</span> שניות...</div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="latsad.js"></script>
 </body>
 </html>
