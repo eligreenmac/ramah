@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>מדורי הענף - חידון זיהוי</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-globes">
+        <div class="globe globe-1"></div>
+        <div class="globe globe-2"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>מדורי הענף</h1>
+            <div class="stats-bar">
+                <div class="progress-info">
+                    <span id="currentStepText">תמונה 1 מתוך 7</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill" style="width: 14.28%;"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Quiz Card -->
+        <main class="quiz-card" id="quizCard">
+            <!-- Image Area -->
+            <div class="image-box">
+                <img id="quizImage" src="" alt="תמונת המדור">
+                <div class="image-overlay" id="imageOverlay"></div>
+            </div>
+
+            <!-- Feedback Alert -->
+            <div class="feedback-msg" id="feedbackMsg"></div>
+
+            <div class="instructions-text">זהה את המדור שבתמונה:</div>
+
+            <!-- 7 Options Buttons -->
+            <div class="options-container" id="optionsContainer">
+                <!-- Buttons will be dynamically populated -->
+            </div>
+        </main>
+
+        <!-- Final Win Screen (Hidden by default) -->
+        <div class="win-screen hidden" id="winScreen">
+            <div class="win-content">
+                <div class="lock-icon-container" id="lockIconContainer">
+                    <i class="fa-solid fa-lock" id="lockIcon"></i>
+                </div>
+                <h2>כל הכבוד!</h2>
+                <p>זיהית בהצלחה את כל מדורי הענף!</p>
+                <button class="restart-btn" id="restartBtn">
+                    <i class="fa-solid fa-rotate-right"></i> שחק שוב
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
