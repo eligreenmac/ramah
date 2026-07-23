@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
-    // שמות מדורי הענף לבחירה (7 מדורים)
+    // שמות 7 מדורי הענף לבחירה
     // -------------------------------------------------------------
     const SECTIONS = [
         "ספרות",
@@ -36,6 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const feedbackMsg = document.getElementById('feedbackMsg');
     const winScreen = document.getElementById('winScreen');
     const restartBtn = document.getElementById('restartBtn');
+    const lockIconContainer = document.getElementById('lockIconContainer');
+    const lockIcon = document.getElementById('lockIcon');
+
+    const fullscreenReveal = document.getElementById('fullscreenReveal');
+    const fullscreenImg = document.getElementById('fullscreenImg');
+    const revealCountdown = document.getElementById('revealCountdown');
+    let revealTimerInterval = null;
 
     // Shuffle Quiz Images Array
     function shuffleQuizImages() {
@@ -50,15 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
         isTransitioning = false;
         const data = activeQuizData[stepIndex];
 
-        // Reset mystery overlay & image reveal state
-        if (mysteryOverlay) mysteryOverlay.classList.remove('revealed');
-        quizImage.classList.remove('revealed');
-
         // Update progress bar & text
         currentStepText.textContent = `תמונה ${stepIndex + 1} מתוך ${activeQuizData.length}`;
         progressFill.style.width = `${((stepIndex + 1) / activeQuizData.length) * 100}%`;
 
-        // Update image (instant on step 0, smooth fade on next steps)
+        // Update image
         if (stepIndex === 0) {
             quizImage.src = data.image;
             quizImage.classList.remove('fade-out');
@@ -96,25 +99,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const fullscreenReveal = document.getElementById('fullscreenReveal');
-    const fullscreenImg = document.getElementById('fullscreenImg');
-    const revealCountdown = document.getElementById('revealCountdown');
-    let revealTimerInterval = null;
-
     function handleOptionClick(selectedIndex, correctIndex, buttonEl) {
         if (isTransitioning) return;
 
         if (selectedIndex === correctIndex) {
-            // Correct Answer! Reveal Image in Fullscreen & Confetti!
+            // Correct Answer! Fullscreen Image Reveal & Confetti!
             isTransitioning = true;
             buttonEl.classList.add('btn-correct');
             buttonEl.querySelector('i').className = 'fa-solid fa-circle-check';
 
-            // Reveal mystery image in card
-            if (mysteryOverlay) mysteryOverlay.classList.add('revealed');
-            quizImage.classList.add('revealed');
-
-            feedbackMsg.textContent = 'תשובה נכונה! התמונה נחשפה! 🥳';
+            feedbackMsg.textContent = 'תשובה נכונה! 🥳';
             feedbackMsg.className = 'feedback-msg correct';
 
             // Open Fullscreen Reveal Modal
@@ -169,12 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const lockIconContainer = document.getElementById('lockIconContainer');
-    const lockIcon = document.getElementById('lockIcon');
-
     function showWinScreen() {
         winScreen.classList.remove('hidden');
-        
+
         if (lockIconContainer && lockIcon) {
             lockIcon.className = 'fa-solid fa-lock';
             lockIconContainer.classList.remove('unlocked');
