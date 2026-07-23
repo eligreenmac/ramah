@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>שיר הענף - נגן מוזיקה</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-globes">
+        <div class="globe globe-1"></div>
+        <div class="globe globe-2"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>שיר הענף</h1>
+        </header>
+
+        <!-- Music Player Card -->
+        <main class="quiz-card music-player-card">
+            <!-- Vinyl Disc / Icon Area -->
+            <div class="vinyl-box" id="vinylBox">
+                <div class="vinyl-disc" id="vinylDisc">
+                    <i class="fa-solid fa-music music-note-icon"></i>
+                </div>
+            </div>
+
+            <!-- Equalizer Visualizer Bars -->
+            <div class="equalizer" id="equalizer">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
+            <div class="song-info">
+                <h2>שיר הענף</h2>
+                <p>לחץ על PLAY להשמעת השיר</p>
+            </div>
+
+            <!-- Audio Tag -->
+            <audio id="audioPlayer" src="ramah.mpeg" preload="metadata"></audio>
+
+            <!-- Progress Bar -->
+            <div class="audio-progress-container" id="progressContainer">
+                <div class="audio-progress-bar" id="progressBar"></div>
+            </div>
+            <div class="time-info">
+                <span id="currentTime">00:00</span>
+                <span id="durationTime">00:00</span>
+            </div>
+
+            <!-- Big Main PLAY Button -->
+            <div class="controls-area">
+                <button class="big-play-btn" id="playBtn">
+                    <i class="fa-solid fa-play" id="playIcon"></i>
+                    <span id="playText">PLAY</span>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script src="music.js"></script>
+</body>
+</html>
